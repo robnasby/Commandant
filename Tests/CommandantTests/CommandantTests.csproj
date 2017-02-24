@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="CommandTests.cs" />
     <Compile Include="HelperCommands\TestAppCommand.cs" />
+    <Compile Include="HelperCommands\TestAppWithArgumentsCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
