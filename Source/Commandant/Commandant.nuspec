@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>commandant</id>
+    <version>1.0.0</version>
+    <title>Commandant</title>
+    <authors>Rob Nasby</authors>
+    <owners>Rob Nasby</owners>
+    <licenseUrl>https://raw.githubusercontent.com/robnasby/Commandant/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/robnasby/Commandant</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library to make it easy to run external commands and process the output.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Git</tags>
+  </metadata>
+</package>
