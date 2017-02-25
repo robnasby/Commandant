@@ -30,7 +30,10 @@ namespace CommandantTests
         private void ExecuteCommandWithArguments()
         {
             var arguments = new List<Object> { "foo", 2 };
-            new TestAppWithArgumentsCommand(arguments).Execute();
+            TestAppWithArgumentsCommand command = new TestAppWithArgumentsCommand(arguments).Execute();
+
+            foreach (Object argument in arguments)
+                Assert.Contains<String>(argument.ToString(), command.Result);
         }
     }
 }
