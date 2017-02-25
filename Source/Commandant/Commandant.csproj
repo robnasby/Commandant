@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Arguments.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="CommandStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

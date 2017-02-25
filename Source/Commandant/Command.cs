@@ -17,9 +17,19 @@ namespace Commandant
         private Arguments _Arguments = new Arguments();
 
         /// <summary>
+        /// The exit code from executing the program.
+        /// </summary>
+        protected int ExitCode { get; private set; }
+
+        /// <summary>
         /// The name of (or path to) the program to execute.
         /// </summary>
         private String ProgramNameOrPath { get; set; }
+
+        /// <summary>
+        /// The status of executing the command.
+        /// </summary>
+        public CommandStatus Status { get; private set; }
 
         #endregion
 
@@ -43,7 +53,10 @@ namespace Commandant
         /// <summary>
         /// Execute the command.
         /// </summary>
-        public void Execute()
+        /// <returns>
+        /// The instance of the command being executed (i.e. this).
+        /// </returns>
+        public dynamic Execute()
         {
             Process process = new Process();
 
@@ -55,6 +68,27 @@ namespace Commandant
             process.Start();
 
             process.WaitForExit();
+
+            this.ExitCode = process.ExitCode;
+            this.Status = DetermineStatus();
+
+            return this;
+        }
+
+        #endregion
+
+        #region Virtual Methods
+
+        /// <summary>
+        /// Determine the status of executing the command.
+        /// </summary>
+        /// <returns>
+        /// The default implementation of this method returns <see cref="CommandStatus.SUCCEEDED"/>
+        /// if <see cref="ExitCode"/> is 0, or <see cref="CommandStatus.FAILED"/> otherwise.
+        /// </returns>
+        protected virtual CommandStatus DetermineStatus()
+        {
+            return this.ExitCode == 0 ? CommandStatus.SUCCEEDED : CommandStatus.FAILED;
         }
 
         #endregion
