@@ -2,6 +2,7 @@
 using CommandantTests.HelperCommands;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Xunit;
 
 namespace CommandantTests
@@ -44,6 +45,16 @@ namespace CommandantTests
 
             foreach (KeyValuePair<String, String> environmentVariable in environmentVariables)
                 Assert.Contains<KeyValuePair<String, String>>(environmentVariable, command.Result);
+        }
+
+        [Fact]
+        private void ExecuteCommandWithPreAndPostExecute()
+        {
+            String fileContents = "TEST FILE CONTENTS";
+            TestAppWithPreAndPostExecuteCommand command = new TestAppWithPreAndPostExecuteCommand(fileContents).Execute();
+
+            Assert.Equal(fileContents, command.Result);
+            Assert.False(File.Exists(command.FilePath));
         }
     }
 }

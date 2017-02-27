@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.IO;
 using System.Linq;
 
 namespace TestApp
@@ -18,6 +19,9 @@ namespace TestApp
             if (args.FirstOrDefault() == "ENVS")
                 foreach (DictionaryEntry env in Environment.GetEnvironmentVariables())
                     Console.WriteLine("ENV: '{0}' = '{1}'", (String)env.Key, (String)env.Value);
+
+            if (args.FirstOrDefault() == "FILE")
+                Console.WriteLine("FILE CONTENT: '{0}'", File.ReadAllText(args.Skip(1).FirstOrDefault()));
 
             return 0;
         }

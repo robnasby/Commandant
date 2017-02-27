@@ -87,6 +87,8 @@ namespace Commandant
         /// </returns>
         internal virtual dynamic DoExecute()
         {
+            this.PreExecute();
+
             Process process = new Process();
 
             process.StartInfo.FileName = this.ProgramNameOrPath;
@@ -110,6 +112,8 @@ namespace Commandant
 
             this.ExitCode = process.ExitCode;
             this.Status = DetermineStatus();
+
+            this.PostExecute();
 
             return this;
         }
@@ -214,6 +218,16 @@ namespace Commandant
         {
             return this.ExitCode == 0 ? CommandStatus.SUCCEEDED : CommandStatus.FAILED;
         }
+
+        /// <summary>
+        /// Actions to perform after executing the command.
+        /// </summary>
+        protected virtual void PostExecute() { }
+
+        /// <summary>
+        /// Actions to perform before executing the command.
+        /// </summary>
+        protected virtual void PreExecute() { }
 
         #endregion
     }
