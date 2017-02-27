@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 
 namespace TestApp
@@ -13,6 +14,10 @@ namespace TestApp
             if (args.FirstOrDefault() == "ARGS")
                 foreach (String arg in args.Skip(1))
                     Console.WriteLine("ARG: '{0}'", arg);
+
+            if (args.FirstOrDefault() == "ENVS")
+                foreach (DictionaryEntry env in Environment.GetEnvironmentVariables())
+                    Console.WriteLine("ENV: '{0}' = '{1}'", (String)env.Key, (String)env.Value);
 
             return 0;
         }

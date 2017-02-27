@@ -35,5 +35,15 @@ namespace CommandantTests
             foreach (Object argument in arguments)
                 Assert.Contains<String>(argument.ToString(), command.Result);
         }
+
+        [Fact]
+        private void ExecuteCommandWithEnvironmentVariables()
+        {
+            var environmentVariables = new Dictionary<String, String> { {"ENV1", "foo"}, {"ENV2", "2"} };
+            TestAppWithEnvironmentVariablesCommand command = new TestAppWithEnvironmentVariablesCommand(environmentVariables).Execute();
+
+            foreach (KeyValuePair<String, String> environmentVariable in environmentVariables)
+                Assert.Contains<KeyValuePair<String, String>>(environmentVariable, command.Result);
+        }
     }
 }

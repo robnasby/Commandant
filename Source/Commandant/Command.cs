@@ -24,6 +24,12 @@ namespace Commandant
         protected IEnumerable<String> CombinedOutputLines { get { return GetTextFromOutput(this.OutputLines); } }
 
         /// <summary>
+        /// The environment variables to set before command executuion.
+        /// </summary>
+        protected Dictionary<String, String> EnvironmentVariables { get { return _EnvironmentVariables; } }
+        private Dictionary<String, String> _EnvironmentVariables = new Dictionary<String, String>();
+
+        /// <summary>
         /// The exit code from executing the program.
         /// </summary>
         protected int ExitCode { get; private set; }
@@ -85,6 +91,8 @@ namespace Commandant
 
             process.StartInfo.FileName = this.ProgramNameOrPath;
             process.StartInfo.Arguments = this.Arguments.ToString();
+            foreach (KeyValuePair<String, String> environmentVariablePair in this.EnvironmentVariables)
+                process.StartInfo.EnvironmentVariables.Add(environmentVariablePair.Key, environmentVariablePair.Value);
 
             process.StartInfo.UseShellExecute = false;
 
