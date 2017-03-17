@@ -40,7 +40,7 @@ namespace CommandantTests.HelperCommands
 
         protected override string BuildResult()
         {
-            return this.CombinedOutputLines
+            return this.OutputLines
                 .Where((l) => { return fileContentRegex.IsMatch(l); })
                 .Select((l) => { return fileContentRegex.Match(l).Groups[1].Value; })
                 .FirstOrDefault();

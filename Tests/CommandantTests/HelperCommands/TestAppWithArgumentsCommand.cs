@@ -30,7 +30,7 @@ namespace CommandantTests.HelperCommands
 
         protected override CommandArguments BuildResult()
         {
-            IEnumerable<String> arguments = this.CombinedOutputLines
+            IEnumerable<String> arguments = this.OutputLines
                 .Where((l) => { return ArgumentRegex.IsMatch(l); })
                 .Select((l) => { return ArgumentRegex.Match(l).Groups[1].Value; })
                 .ToList();

@@ -30,7 +30,7 @@ namespace CommandantTests.HelperCommands
 
         protected override CommandEnvironmentVariables BuildResult()
         {
-            IEnumerable<KeyValuePair<String, String>> environmentVariables = this.CombinedOutputLines
+            IEnumerable<KeyValuePair<String, String>> environmentVariables = this.OutputLines
                 .Where((l) => { return EnvironmentVariableRegex.IsMatch(l); })
                 .Select((l) => { 
                     Match match = EnvironmentVariableRegex.Match(l);

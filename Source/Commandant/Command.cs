@@ -22,7 +22,8 @@ namespace Commandant
         /// <summary>
         /// The combined output of STDOUT and STDERR from executing the command.
         /// </summary>
-        protected IEnumerable<String> CombinedOutputLines { get { return GetTextFromOutput(this.OutputLines); } }
+        [Obsolete("This property will be removed in version 2.0.0.  Use the OutputLines property instead.")]
+        protected IEnumerable<String> CombinedOutputLines { get { return GetOutputLines().ToList(); } }
 
         /// <summary>
         /// The environment variables to set before command executuion.
@@ -36,10 +37,15 @@ namespace Commandant
         protected int ExitCode { get; private set; }
 
         /// <summary>
-        /// The output from executing the command.
+        /// The internal cache of the output from executing the command.
         /// </summary>
-        private List<Output> OutputLines { get { return _OutputLines; } }
-        private List<Output> _OutputLines = new List<Output>();
+        private List<Output> InternalOutputCache { get { return _InternalOutputCache; } }
+        private List<Output> _InternalOutputCache = new List<Output>();
+
+        /// <summary>
+        /// The output lines from executing the command.
+        /// </summary>
+        protected IEnumerable<String> OutputLines { get { return GetOutputLines().ToList(); } }
 
         /// <summary>
         /// The name of (or path to) the program to execute.
@@ -47,14 +53,14 @@ namespace Commandant
         private String ProgramNameOrPath { get; set; }
 
         /// <summary>
-        /// The STDERR from executing the command.
+        /// The STDERR lines from executing the command.
         /// </summary>
-        protected IEnumerable<String> StandardErrorLines { get { return GetTextFromOutput(FilteredOutputText(OutputType.STDERR)); } }
+        protected IEnumerable<String> StandardErrorLines { get { return GetOutputLines(OutputType.STDERR).ToList(); } }
 
         /// <summary>
-        /// The STDOUT from executing the command.
+        /// The STDOUT lines from executing the command.
         /// </summary>
-        protected IEnumerable<String> StandardOutputLines { get { return GetTextFromOutput(FilteredOutputText(OutputType.STDOUT)); } }
+        protected IEnumerable<String> StandardOutputLines { get { return GetOutputLines(OutputType.STDOUT).ToList(); } }
 
         /// <summary>
         /// The status of executing the command.
@@ -159,31 +165,28 @@ namespace Commandant
         }
 
         /// <summary>
-        /// The output from the command, filtered by the specified type.
+        /// Gets the output lines of text.
         /// </summary>
-        /// <param name="filter">
-        /// The type by which to filter the output.
-        /// </param>
         /// <returns>
-        /// The matching output lines.
+        /// The output lines of text.
         /// </returns>
-        private IEnumerable<Output> FilteredOutputText(OutputType filter)
+        private IEnumerable<String> GetOutputLines()
         {
-            return this.OutputLines.Where((ol) => { return ol.Type == filter; });
+            return this.InternalOutputCache.Select((o) => { return o.Text; });
         }
 
         /// <summary>
-        /// Gets the text of the provided output lines.
+        /// Gets the output lines of text that match the specified type.
         /// </summary>
-        /// <param name="output">
-        /// The lines from which to get text.
+        /// <param name="type">
+        /// The type by which to filter the output.
         /// </param>
         /// <returns>
-        /// The test from the provided lines.
+        /// The output lines of text.
         /// </returns>
-        private IEnumerable<String> GetTextFromOutput(IEnumerable<Output> output)
+        private IEnumerable<String> GetOutputLines(OutputType type)
         {
-            return output.Select((ol) => { return ol.Text; });
+            return this.InternalOutputCache.Where((o) => { return o.Type == type; }).Select((o) => { return o.Text; });
         }
 
         /// <summary>
@@ -199,7 +202,7 @@ namespace Commandant
                                    OutputType type)
         {
             if (outputText != null)
-                this.OutputLines.Add(new Output(outputText, type));
+                this.InternalOutputCache.Add(new Output(outputText, type));
         }
 
         /// <summary>
