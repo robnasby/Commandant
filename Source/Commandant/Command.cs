@@ -48,6 +48,11 @@ namespace Commandant
         protected IEnumerable<String> OutputLines { get { return GetOutputLines().ToList(); } }
 
         /// <summary>
+        /// The output text from executing the command.
+        /// </summary>
+        protected String OutputText { get { return String.Join(Environment.NewLine, GetOutputLines()); } }
+
+        /// <summary>
         /// The name of (or path to) the program to execute.
         /// </summary>
         private String ProgramNameOrPath { get; set; }
@@ -58,9 +63,19 @@ namespace Commandant
         protected IEnumerable<String> StandardErrorLines { get { return GetOutputLines(OutputType.STDERR).ToList(); } }
 
         /// <summary>
+        /// The STDERR text from executing the command.
+        /// </summary>
+        protected String StandardErrorText { get { return String.Join(Environment.NewLine, GetOutputLines(OutputType.STDERR)); } }
+
+        /// <summary>
         /// The STDOUT lines from executing the command.
         /// </summary>
         protected IEnumerable<String> StandardOutputLines { get { return GetOutputLines(OutputType.STDOUT).ToList(); } }
+
+        /// <summary>
+        /// The STDOUT text from executing the command.
+        /// </summary>
+        protected String StandardOutputText { get { return String.Join(Environment.NewLine, GetOutputLines(OutputType.STDOUT)); } }
 
         /// <summary>
         /// The status of executing the command.

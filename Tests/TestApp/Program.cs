@@ -23,6 +23,13 @@ namespace TestApp
             if (args.FirstOrDefault() == "FILE")
                 Console.WriteLine("FILE CONTENT: '{0}'", File.ReadAllText(args.Skip(1).FirstOrDefault()));
 
+            if (args.FirstOrDefault() == "OUTPUT")
+                foreach (String output in args.Skip(1))
+                {
+                    if (output.StartsWith("ERR:")) Console.Error.WriteLine(output);
+                    if (output.StartsWith("OUT:")) Console.Out.WriteLine(output);
+                }
+
             return 0;
         }
     }

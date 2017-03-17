@@ -56,11 +56,13 @@
     <Compile Include="CommandTests.cs" />
     <Compile Include="HelperCommands\CommandArguments.cs" />
     <Compile Include="HelperCommands\CommandEnvironmentVariables.cs" />
+    <Compile Include="HelperCommands\CommandOutput.cs" />
     <Compile Include="HelperCommands\TestAppCommand.cs" />
     <Compile Include="HelperCommands\TestAppFailedCommand.cs" />
     <Compile Include="HelperCommands\TestAppSucceededCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithArgumentsCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithEnvironmentVariablesCommand.cs" />
+    <Compile Include="HelperCommands\TestAppWithOutputCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithPreAndPostExecuteCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

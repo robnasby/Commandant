@@ -56,5 +56,26 @@ namespace CommandantTests
             Assert.Equal(fileContents, command.Result);
             Assert.False(File.Exists(command.FilePath));
         }
+
+        [Fact]
+        private void OutputLinesMatchOutputText()
+        {
+            IEnumerable<String> outputLines = new String[] {
+                "OUT:Hello.",
+                "ERR:Hi.",
+                "ERR:How are you?",
+                "OUT:I'm doing good.",
+                "OUT:How are you?",
+                "ERR:Very well.",
+                "ERR:Thanks for asking."
+            };
+
+            TestAppWithOutputCommand command = new TestAppWithOutputCommand(outputLines).Execute();
+            CommandOutput output = command.Result;
+
+            Assert.Equal(String.Join(Environment.NewLine, output.StandardErrorLines), output.StandardErrorText);
+            Assert.Equal(String.Join(Environment.NewLine, output.StandardOutputLines), output.StandardOutputText);
+            Assert.Equal(String.Join(Environment.NewLine, output.OutputLines), output.OutputText);
+        }
     }
 }
