@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 
 namespace Commandant
@@ -80,6 +81,32 @@ namespace Commandant
         #region Methods
 
         /// <summary>
+        /// Determine the program and arguments to use when executing the command.
+        /// </summary>
+        /// <returns>
+        /// The program and arguments to use when executing the command.
+        /// </returns>
+        private ProgramAndArguments DetermineProgramAndArguments()
+        {
+            if (Path.IsPathRooted(this.ProgramNameOrPath))
+            {
+                // If a full path is provided, just run the program.
+                return new ProgramAndArguments(this.ProgramNameOrPath, this.Arguments.ToString());
+            }
+            else if (this.ProgramNameOrPath.Contains(" "))
+            {
+                // If the program name or path contains a space, we can't use the cmd trick below.
+                return new ProgramAndArguments(this.ProgramNameOrPath, this.Arguments.ToString());
+            }
+            else
+            {
+                // Executing the command using cmd correctly sets the program path in the arguments.
+                // This can be important to Batch scripts or some applications.
+                return new ProgramAndArguments("cmd", String.Format("/c {0} {1}", this.ProgramNameOrPath, this.Arguments.ToString()));
+            }
+        }
+
+        /// <summary>
         /// The internal implementation of command execution.
         /// </summary>
         /// <returns>
@@ -91,8 +118,10 @@ namespace Commandant
 
             Process process = new Process();
 
-            process.StartInfo.FileName = this.ProgramNameOrPath;
-            process.StartInfo.Arguments = this.Arguments.ToString();
+            ProgramAndArguments programAndArguments = DetermineProgramAndArguments();
+            process.StartInfo.FileName = programAndArguments.Program;
+            process.StartInfo.Arguments = programAndArguments.Arguments;
+
             foreach (KeyValuePair<String, String> environmentVariablePair in this.EnvironmentVariables)
                 process.StartInfo.EnvironmentVariables.Add(environmentVariablePair.Key, environmentVariablePair.Value);
 
