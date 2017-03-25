@@ -62,6 +62,7 @@
     <Compile Include="HelperCommands\TestAppSucceededCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithArgumentsCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithEnvironmentVariablesCommand.cs" />
+    <Compile Include="HelperCommands\TestAppWithExpectedExitCodesCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithOutputCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithPreAndPostExecuteCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

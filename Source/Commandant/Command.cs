@@ -37,6 +37,14 @@ namespace Commandant
         protected int ExitCode { get; private set; }
 
         /// <summary>
+        /// The expected exit codes from executing the program.
+        /// </summary>
+        /// <remarks>
+        /// The default value is { 0 }.
+        /// </remarks>
+        protected IEnumerable<int> ExpectedExitCodes { get; set; }
+
+        /// <summary>
         /// The internal cache of the output from executing the command.
         /// </summary>
         private List<Output> InternalOutputCache { get { return _InternalOutputCache; } }
@@ -94,6 +102,7 @@ namespace Commandant
         /// </param>
         public Command(String programNameOrPath)
         {
+            this.ExpectedExitCodes = new int[] { 0 };
             this.ProgramNameOrPath = programNameOrPath;
         }
 
@@ -259,11 +268,12 @@ namespace Commandant
         /// </summary>
         /// <returns>
         /// The default implementation of this method returns <see cref="CommandStatus.SUCCEEDED"/>
-        /// if <see cref="ExitCode"/> is 0, or <see cref="CommandStatus.FAILED"/> otherwise.
+        /// if <see cref="ExitCode"/> is one of the values in <see cref="ExpectedExitCode"/>,
+        /// or <see cref="CommandStatus.FAILED"/> otherwise.
         /// </returns>
         protected virtual CommandStatus DetermineStatus()
         {
-            return this.ExitCode == 0 ? CommandStatus.SUCCEEDED : CommandStatus.FAILED;
+            return this.ExpectedExitCodes.Contains(this.ExitCode) ? CommandStatus.SUCCEEDED : CommandStatus.FAILED;
         }
 
         /// <summary>

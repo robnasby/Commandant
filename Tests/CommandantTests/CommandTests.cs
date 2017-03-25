@@ -48,6 +48,12 @@ namespace CommandantTests
         }
 
         [Fact]
+        private void ExecuteCommandWithExpectedExitCodes()
+        {
+            Assert.Equal<CommandStatus>(CommandStatus.SUCCEEDED, new TestAppWithExpectedExitCodesCommand().Execute().Status);
+        }
+
+        [Fact]
         private void ExecuteCommandWithPreAndPostExecute()
         {
             String fileContents = "TEST FILE CONTENTS";
