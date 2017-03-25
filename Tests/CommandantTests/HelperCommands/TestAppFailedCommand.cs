@@ -10,7 +10,8 @@ namespace CommandantTests.HelperCommands
         public TestAppFailedCommand()
             : base(@"..\..\..\TestApp\bin\TestApp.exe")
         {
-            this.Arguments.Append("FAIL");
+            this.Arguments.Append("EXITCODE");
+            this.Arguments.Append("-1");
         }
 
         #endregion
