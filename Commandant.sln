@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commandant", "Source\Commandant\Commandant.csproj", "{6009274F-3BFF-46E1-9AFA-E564BFE93223}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandantTests", "Tests\CommandantTests\CommandantTests.csproj", "{185E9EA7-6FC5-43AC-B690-A996823A36DF}"

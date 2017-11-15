@@ -30,6 +30,9 @@ namespace TestApp
                     if (output.StartsWith("OUT:")) Console.Out.WriteLine(output);
                 }
 
+            if (args.FirstOrDefault() == "WORKDIR")
+                Console.WriteLine("WORKING DIRECTORY: '{0}'", Environment.CurrentDirectory);
+
             return 0;
         }
     }

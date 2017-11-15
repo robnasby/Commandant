@@ -64,6 +64,15 @@ namespace CommandantTests
         }
 
         [Fact]
+        private void ExecuteCommandWithWorkingDirectory()
+        {
+            String workingDirectoryPath = @"..\..\..\TestApp\bin";
+            TestAppWithWorkingDirectoryCommand command = new TestAppWithWorkingDirectoryCommand(workingDirectoryPath).Execute();
+
+            Assert.Equal(Path.GetFullPath(workingDirectoryPath), command.Result);
+        }
+
+        [Fact]
         private void OutputLinesMatchOutputText()
         {
             IEnumerable<String> outputLines = new String[] {

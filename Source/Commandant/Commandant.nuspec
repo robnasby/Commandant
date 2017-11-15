@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>commandant</id>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
     <title>Commandant</title>
     <authors>Rob Nasby</authors>
     <owners>Rob Nasby</owners>
@@ -10,7 +10,9 @@
     <projectUrl>https://github.com/robnasby/Commandant</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A library to make it easy to run external commands and process the output.</description>
-    <releaseNotes>Improve default status determination logic to support expected exit code(s) other than 0.</releaseNotes>
+    <releaseNotes>
+      Add support for setting the working directory for the command.
+    </releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Process</tags>
   </metadata>

@@ -65,6 +65,7 @@
     <Compile Include="HelperCommands\TestAppWithExpectedExitCodesCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithOutputCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithPreAndPostExecuteCommand.cs" />
+    <Compile Include="HelperCommands\TestAppWithWorkingDirectoryCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +76,9 @@
       <Project>{6009274f-3bff-46e1-9afa-e564bfe93223}</Project>
       <Name>Commandant</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

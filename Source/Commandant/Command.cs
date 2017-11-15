@@ -90,6 +90,11 @@ namespace Commandant
         /// </summary>
         public CommandStatus Status { get; private set; }
 
+        /// <summary>
+        /// The working directory to use when running the command.
+        /// </summary>
+        public String WorkingDirectory { get; set; }
+
         #endregion
 
         #region Constructors
@@ -154,6 +159,8 @@ namespace Commandant
 
             foreach (KeyValuePair<String, String> environmentVariablePair in this.EnvironmentVariables)
                 process.StartInfo.EnvironmentVariables.Add(environmentVariablePair.Key, environmentVariablePair.Value);
+
+            if (this.WorkingDirectory != null) process.StartInfo.WorkingDirectory = this.WorkingDirectory;
 
             process.StartInfo.UseShellExecute = false;
 
