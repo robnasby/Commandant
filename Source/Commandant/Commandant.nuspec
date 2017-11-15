@@ -13,6 +13,7 @@
     <releaseNotes>
       Add support for automatically throwing an exception if command fails.
       Add support for setting the working directory for the command.
+      Add support for setting values when constructing an instance of Arguments.
     </releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Process</tags>

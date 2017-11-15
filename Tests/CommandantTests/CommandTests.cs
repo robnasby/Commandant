@@ -44,6 +44,24 @@ namespace CommandantTests
         }
 
         [Fact]
+        private void ExecuteCommandWithConstructedArguments()
+        {
+            List<string> argumentsSet1 = new List<string> { "ay", "bee", "sea" };
+            Arguments arguments1 = new Arguments(String.Join(" ", argumentsSet1));
+            TestAppWithConstructedArgumentsCommand command1 = new TestAppWithConstructedArgumentsCommand(arguments1).Execute();
+
+            foreach (string argument in argumentsSet1)
+                Assert.Contains<String>(argument, command1.Result);
+
+            List<object> argumentsSet2 = new List<object> { "one", 2, 3.0 };
+            Arguments arguments2 = new Arguments(argumentsSet2.ToArray());
+            TestAppWithConstructedArgumentsCommand command2 = new TestAppWithConstructedArgumentsCommand(arguments2).Execute();
+
+            foreach (object argument in argumentsSet2)
+                Assert.Contains<String>(argument.ToString(), command2.Result);
+        }
+
+        [Fact]
         private void ExecuteCommandWithEnvironmentVariables()
         {
             var environmentVariables = new Dictionary<String, String> { {"ENV1", "foo"}, {"ENV2", "2"} };

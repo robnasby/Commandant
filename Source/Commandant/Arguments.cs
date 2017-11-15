@@ -15,6 +15,38 @@ namespace Commandant
 
         #endregion
 
+        #region Constructors
+
+        /// <summary>
+        /// Instaniates an instance of <see cref="Arguments"/>.
+        /// </summary>
+        public Arguments() { }
+
+        /// <summary>
+        /// Instaniates an instance of <see cref="Arguments"/>.
+        /// </summary>
+        /// <param name="argument">
+        /// An argument to use to pupolaue the <see cref="Arguments"/> instance.
+        /// </param>
+        public Arguments(String argument)
+        {
+            this.Append(argument);
+        }
+
+        /// <summary>
+        /// Instaniates an instance of <see cref="Arguments"/>.
+        /// </summary>
+        /// <param name="arguments">
+        /// A set of arguments to use to populate the <see cref="Arguments"/> instance.
+        /// </param>
+        public Arguments(params object[] arguments)
+        {
+            foreach (object argument in arguments)
+                this.Append(argument);
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandTests.cs" />
+    <Compile Include="HelperCommands\AbstractTestAppWithArgumentsCommand.cs" />
     <Compile Include="HelperCommands\CommandArguments.cs" />
     <Compile Include="HelperCommands\CommandEnvironmentVariables.cs" />
     <Compile Include="HelperCommands\CommandOutput.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="HelperCommands\TestAppSucceededCommand.cs" />
     <Compile Include="HelperCommands\TestAppThrowsExceptionOnFailureCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithArgumentsCommand.cs" />
+    <Compile Include="HelperCommands\TestAppWithConstructedArgumentsCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithEnvironmentVariablesCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithExpectedExitCodesCommand.cs" />
     <Compile Include="HelperCommands\TestAppWithOutputCommand.cs" />
