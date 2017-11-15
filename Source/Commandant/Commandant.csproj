@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Arguments.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="CommandFailedException.cs" />
     <Compile Include="CommandResult.cs" />
     <Compile Include="CommandStatus.cs" />
     <Compile Include="Output.cs" />

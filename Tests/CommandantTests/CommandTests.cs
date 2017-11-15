@@ -28,6 +28,12 @@ namespace CommandantTests
         }
 
         [Fact]
+        private void ExecuteCommandThrowsExceptionOnFailure()
+        {
+            Assert.Throws<CommandFailedException>(() => new TestAppThrowsExceptionOnFailureCommand().Execute());
+        }
+
+        [Fact]
         private void ExecuteCommandWithArguments()
         {
             var arguments = new List<Object> { "foo", 2 };

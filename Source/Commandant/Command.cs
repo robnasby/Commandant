@@ -91,6 +91,14 @@ namespace Commandant
         public CommandStatus Status { get; private set; }
 
         /// <summary>
+        /// Indicates if an exception should be thrown if the command fails.
+        /// </summary>
+        /// <remarks>
+        /// The default exception that is thrown will contain the output of the command.
+        /// </remarks>
+        public bool ThrowExceptionOnFailure { get; set; }
+
+        /// <summary>
         /// The working directory to use when running the command.
         /// </summary>
         public String WorkingDirectory { get; set; }
@@ -180,6 +188,9 @@ namespace Commandant
             this.Status = DetermineStatus();
 
             this.PostExecute();
+
+            if (this.Status == CommandStatus.FAILED && this.ThrowExceptionOnFailure)
+                throw new CommandFailedException(programAndArguments.Program, programAndArguments.Arguments, this.ExitCode, this.OutputText);
 
             return this;
         }

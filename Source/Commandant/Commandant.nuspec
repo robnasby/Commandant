@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A library to make it easy to run external commands and process the output.</description>
     <releaseNotes>
+      Add support for automatically throwing an exception if command fails.
       Add support for setting the working directory for the command.
     </releaseNotes>
     <copyright>Copyright 2017</copyright>
