@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>commandant</id>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
     <title>Commandant</title>
     <authors>Rob Nasby</authors>
     <owners>Rob Nasby</owners>
@@ -11,9 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A library to make it easy to run external commands and process the output.</description>
     <releaseNotes>
-      Add support for automatically throwing an exception if command fails.
-      Add support for setting the working directory for the command.
-      Add support for setting values when constructing an instance of Arguments.
+      Configure assembly for strong-name signing.
     </releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>Process</tags>
